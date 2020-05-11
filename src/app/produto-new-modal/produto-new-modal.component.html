@@ -1,4 +1,4 @@
-<form>
+<form #form="ngForm" class="needs-validation" novalidate autocomplete="off">
     <div class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -11,22 +11,26 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Produto</label>
-                        <input class="form-control" name="produto" type="text" [(ngModel)]="produto">
+                        <input class="form-control" #PRODUTO="ngModel" name="produto" type="text" required [(ngModel)]="produto">
+                        <div class="validation-error" *ngIf="PRODUTO.invalid && PRODUTO.touched">Este campo é obrigatório!</div>
                     </div>
                     <div class="form-group">
                         <label>Descrição</label>
-                        <input class="form-control" name="descricao" type="text" [(ngModel)]="descricao">
+                        <input class="form-control" #DESCRICAO="ngModel" name="descricao" type="text" required [(ngModel)]="descricao">
+                        <div class="validation-error" *ngIf="DESCRICAO.invalid && DESCRICAO.touched">Este campo é obrigatório!</div>
                     </div>
                     <div class="form-group">
                         <label>Valor/R$</label>
-                        <input class="form-control" name="valor" type="number" [(ngModel)]="valor">
+                        <input class="form-control" #VALOR="ngModel" name="valor" type="number" required [(ngModel)]="valor">
+                        <div class="validation-error" *ngIf="VALOR.invalid && VALOR.touched">Este campo é obrigatório!</div>
                     </div>
                     <div class="form-group">
                         <label>Peso/Kg</label>
-                        <input class="form-control" name="peso" type="number" [(ngModel)]="peso">
-                    </div>
+                        <input class="form-control" #PESO="ngModel" name="peso" type="number" required [(ngModel)]="peso">
+                        <div class="validation-error" *ngIf="PESO.invalid && PESO.touched">Este campo é obrigatório!</div>
+                    </div> 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-secondary" (click)="clearFields()" data-dismiss="modal">Fechar</button>
                         <button type="button" class="btn btn-primary" (click)="addProduto()">Incluir</button>
                     </div>
                 </div>

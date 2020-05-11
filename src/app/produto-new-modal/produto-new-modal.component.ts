@@ -1,5 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import produtos from '../produtos'
+import { stringify } from 'querystring';
+import { NgModel } from '@angular/forms';
 
 declare const $;
 
@@ -33,13 +35,14 @@ export class ProdutoNewModalComponent implements OnInit {
   }
 
   addProduto(){
-    this.produtos.push({
-      produto:this.produto,
-      descricao:this.descricao,
-      valor:this.valor,
-      peso:this.peso
-    });
-    this.clearFields();
+    if(this.produto != '' && this.descricao != '' && this.valor != null && this.peso != null)
+      this.produtos.push({
+        produto:this.produto,
+        descricao:this.descricao,
+        valor:this.valor,
+        peso:this.peso
+      });
+      this.clearFields();
   }
 
   clearFields(){
@@ -48,5 +51,7 @@ export class ProdutoNewModalComponent implements OnInit {
     this.valor = 0;
     this.peso = 0;
     $(this.getDivModal()).modal('hide');
+    document.getElementsByName("produto")[0].classList.remove("ng-touched");
+    document.getElementsByName("descricao")[0].classList.remove("ng-touched"); 
   }
 }
