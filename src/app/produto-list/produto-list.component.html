@@ -1,0 +1,32 @@
+<div class="container">
+    <h2>Cadastro de Produtos</h2>
+    <hr>
+    <div class="row">
+        <div class="button-toolbar">
+            <button type="button" class="btn btn-primary mr-1" (click)="openNewModal()">Novo Produto</button>
+            <button type="button" class="btn btn-success mr-1" (click)="exportToXLS()">Exportar XLS</button>
+        </div>
+        <br>
+        <br>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Descrição</th>
+                    <th>Valor/R$</th>
+                    <th>Peso/Kg</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let produto of produtos">
+                    <td>{{produto.produto}}</td>
+                    <td>{{produto.descricao}}</td>
+                    <td>{{produto.valor}}</td>
+                    <td>{{produto.peso}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<produto-new-modal> </produto-new-modal>
